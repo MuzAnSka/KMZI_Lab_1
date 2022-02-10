@@ -48,11 +48,10 @@ def decryptCaesar(msg, shift):
                 else:
                         ret += x
 
-
         return ret
 
 def dec(msg):
-        q = open('abc.txt', 'w', encoding='utf-8')
+        q = open('decoded_b_f.txt', 'w', encoding='utf-8')
         ret = ""
         shift = 0
         for shift in range(len(lrus)):
@@ -72,17 +71,29 @@ def dec(msg):
                         else:
                                 ret += x
 
-                q.write('ключ = %s\n %s \n' % (shift, ret))
+                q.write('Shift = %s\n %s \n' % (shift, ret))
                 ret = ""
         return ret
 
-f = open('a.txt', encoding='utf-8')
-b = open('ab.txt', 'w', encoding='utf-8')
 
-a = f.read()
-c = encryptCaesar(a, 10)
-print(encryptCaesar(a, 10))
-print(decryptCaesar(c, 10))
-s = dec(c)
-b.write(c)
-
+print("Choose a type of the process:\n1. Encyption\n2. Decryption")
+type = int(input())
+if type == 1:
+        f = open('a.txt', encoding='utf-8')
+        b = open('encoded.txt', 'w', encoding='utf-8')
+        k = open('shift.txt', encoding='utf-8')
+        sh = int(k.read())
+        a = f.read()
+        c = encryptCaesar(a, sh)
+        #print(encryptCaesar(a, sh))
+        #print(decryptCaesar(c, sh))
+        #s = dec(c)
+        b.write(c)
+elif type == 2:
+        f = open('encoded.txt', encoding='utf-8')
+        #b = open('b.txt', 'w', encoding='utf-8')
+        a = f.read()
+        s = dec(a)
+        #b.write(s)
+else:
+        print('Oops! Start again')
